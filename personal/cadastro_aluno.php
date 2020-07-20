@@ -66,7 +66,7 @@ if(isset($_POST['cadastrar'])){
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
-	<title>Cadastro de Aluno</title>
+	<title>Cadastro - Aluno</title>
 </head>
 <body>
 	<form method="POST" action="cadastro_aluno.php">
