@@ -8,7 +8,7 @@ $entrar = $_POST['entrar'];
 $senha = MD5($_POST['senha']);
 
     if (isset($entrar)) {
-    	$query = "SELECT * FROM aluno WHERE email = '$email' AND senha = '$senha'";
+    	  $query = "SELECT * FROM aluno WHERE email = '$email' AND senha = '$senha'";
       	$verifica = mysqli_query($conexao, $query) or die($connect->error);
 
       	var_dump(mysqli_num_rows($verifica));
@@ -45,7 +45,7 @@ $senha = MD5($_POST['senha']);
 
       <input type="submit" value="Logar" id="entrar" name="entrar">
 
-      <a href="../personal/cadastro_aluno.php">Cadastre-se</a>
+      <a href="../personal/aluno_formulario.php">Cadastre-se</a>
     </center>
   </form>
 </body>
