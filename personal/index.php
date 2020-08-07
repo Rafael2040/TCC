@@ -23,7 +23,8 @@ $alunos = mysqli_query($conexao, $sql) or die($conexao->close());
 	<h2><a href="logout.php">Sair</a></h2>
 	<ul>
 	<?php while ($aluno = $alunos->fetch_assoc()): ?>
-		<li><a href="#"><?=$aluno['nome']?></a></li>
+		<?php $urlEdicao = "./aluno_editar.php?id={$aluno['aluno_id']}"; ?>
+		<li><a href="<?=$urlEdicao?>"><?=$aluno['nome']?></a></li>
 	<?php endwhile ?>
 	</ul>
 </body>
