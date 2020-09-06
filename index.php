@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           session_start();
           $dados = mysqli_fetch_assoc($verifica);
           $_SESSION['nome'] = $dados['nome'];
-          $_SESSION['id'] = $dados['id'];
+          $_SESSION['id'] = $dados['personal_id'];
             header("Location: ./personal/index.php");
         }
     }

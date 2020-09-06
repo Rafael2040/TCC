@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require '../utils/verifica_sessao.php';
 require '../bd/conexao.php';
@@ -8,7 +7,7 @@ $personal_id = $_SESSION['id'];
 $personal_nome = $_SESSION['nome'];
 
 //buscar alunos no banco
-$sql = "SELECT * FROM aluno";
+$sql = "SELECT * FROM aluno WHERE personal_id=personal_id";//pegar só os aluno daquele personal"$perosnal_id= personal_id"
 $alunos = mysqli_query($conexao, $sql) or die($conexao->close());
 
 ?>

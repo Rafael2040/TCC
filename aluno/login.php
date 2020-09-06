@@ -5,24 +5,32 @@ require '../bd/conexao.php';
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 $email = $_POST['email'];
 $entrar = $_POST['entrar'];
-$senha = MD5($_POST['senha']);
+$senha = $_POST['senha'];
 
     if (isset($entrar)) {
-    	  $query = "SELECT * FROM aluno WHERE email = '$email' AND senha = '$senha'";
+    	  $query = "SELECT * FROM aluno WHERE email = '$email'";
       	$verifica = mysqli_query($conexao, $query) or die($connect->error);
 
-      	var_dump(mysqli_num_rows($verifica));
         if (mysqli_num_rows($verifica) <= 0){
-         	echo"<script>alert('Login e/ou senha incorretos');window.location.href='login.php';</script>";
-
+         	//echo "<script>alert('Login e/ou senha incorretos');window.location.href='login.php';</script>";
+          echo 'a';
           die();
 
-        }else{
-        	session_start();
+        } else {
+        	
         	$dados = mysqli_fetch_assoc($verifica);
-        	$_SESSION['nome'] = $dados['nome'];
-        	$_SESSION['id'] = $dados['id'];
-          	header("Location: ./index.php");
+
+          if(password_verify($senha, $dados['senha'])){
+            session_start();
+            $_SESSION['nome'] = $dados['nome'];
+            $_SESSION['id'] = $dados['id'];
+            header("Location: ./index.php");
+
+          } else {
+            //echo"<script>alert('Login e/ou senha incorretos');window.location.href='login.php';</script>";
+            var_dump(password_verify($senha, $dados['senha']));
+            die();
+          }
         }
     }
 }        
@@ -45,7 +53,6 @@ $senha = MD5($_POST['senha']);
 
       <input type="submit" value="Logar" id="entrar" name="entrar">
 
-      <a href="../personal/aluno_formulario.php">Cadastre-se</a>
     </center>
   </form>
 </body>

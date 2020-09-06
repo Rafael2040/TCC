@@ -1,5 +1,6 @@
 <?php
 
+require '../utils/verifica_sessao.php';
 require '../bd/conexao.php';
 
 $id = $_GET['id'];
@@ -15,13 +16,13 @@ if(isset($_POST['editar'])){
 	$senha = md5($_POST['senha']);
 	$endereco = $_POST['endereco'];
 
-	$sql = "UPDATE aluno SET nome='$nome', email='$email', sexo='$sexo', data_de_nascimento='$nasc',objetivo='$objetivo', nivel_de_treinamento='$nivel', senha='$senha', observacoes='$obs', endereco='$endereco' WHERE aluno_id=$id";
+	$sql = "UPDATE aluno SET nome='$nome', email='$email', sexo='$sexo', data_de_nascimento='$nasc',objetivo='$objetivo', nivel_de_treinamento='$nivel', senha='$senha', observacoes='$obs', endereco='$endereco' WHERE aluno_id='$id' and personal_id='$personal_id'";
 
 	$conexao->query($sql);
 	echo $conexao->error;
 }
 
-$sql = "SELECT * FROM aluno WHERE aluno_id=$id";
+$sql = "SELECT * FROM aluno WHERE aluno_id=$id;" //and $personal_id=personal_id
 $dados = $conexao->query($sql)->fetch_assoc();
 
 ?>
@@ -66,12 +67,6 @@ $dados = $conexao->query($sql)->fetch_assoc();
 			
 			<label for="email">Email:</label>
 			<input type="email" name="email" value="<?=$dados['email']?>"><br><br>
-
-			<label for="senha">Senha:</label>
-			<input type="password" name="senha" id="senha"><br><br>
-
-			<label for="senha_2">Repita sua Senha:</label>
-			<input type="password" name="senha_2" id="senha_2"><br><br>
 
 			<input type="submit" value="Salvar" id="salvar" name="editar">
 

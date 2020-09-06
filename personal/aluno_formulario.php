@@ -1,5 +1,6 @@
 <?php
 
+require '../utils/verifica_sessao.php';
 require '../bd/conexao.php';
 $mensagens = [];
 
@@ -10,6 +11,7 @@ $nasc = NULL;
 $nivel = NULL;
 $objetivo = NULL;
 $email = NULL;
+$personal_id = $_SESSION['id'];
 
 if(isset($_POST['cadastrar'])){
     $nome = isset($_POST['nome']) ? $_POST['nome'] : NULL;
@@ -20,8 +22,8 @@ if(isset($_POST['cadastrar'])){
     $objetivo = isset($_POST['objetivo']) ? $_POST['objetivo'] : NULL;
     $observacoes = isset($_POST['observacoes']) ? $_POST['observacoes'] : NULL;
     $email = isset($_POST['email']) ? $_POST['email'] : NULL;  
-    $senha = isset($_POST['senha']) ? md5($_POST['senha']) : NULL;
-    $senha_2 = isset($_POST['senha_2']) ? md5($_POST['senha_2']) : NULL;
+    $senha = isset($_POST['senha']) ? password_hash($_POST['senha'], PASSWORD_DEFAULT) : NULL;
+    $senha_2 = isset($_POST['senha_2']) ? password_verify($_POST['senha_2'], $senha) : NULL;
 
     if(!$nome || !(strlen($nome) > 2) || (strlen($nome) > 255)){
         array_push($mensagens, "Por favor preencha Nome entre 2 e 255 caracteres");
@@ -29,11 +31,11 @@ if(isset($_POST['cadastrar'])){
     if(!$email || !(strlen($email) > 6) || (strlen($email) > 255)){
         array_push($mensagens, "Por favor preencha Email entre 6 e 255 caracteres");
     }
-     if(!$senha){
+    if(!$senha){
         array_push($mensagens, "Por favor preencha Senha");
     }
     if(!$senha_2){
-        array_push($mensagens, "Por favor preencha Confirmar Senha"); 
+        array_push($mensagens, "As senhas não conferem"); 
 	}
     if($senha != $senha_2){
         array_push($mensagens, "A Senha e a sua confirmação devem ser iguais");
@@ -50,7 +52,7 @@ if(isset($_POST['cadastrar'])){
 		$resultado = mysqli_query($conexao, $query_select);
 		$usuario_verificado = mysqli_fetch_assoc($resultado)['nome'];
 
-		$query = "INSERT INTO aluno(nome,endereco,sexo,data_de_nascimento,nivel_de_treinamento,objetivo,observacoes,email,senha) VALUES ('$nome','$endereco','$sexo','$nasc','$nivel','$objetivo','$observacoes','$email','$senha')";
+		$query = "INSERT INTO aluno(nome,endereco,sexo,data_de_nascimento,nivel_de_treinamento,objetivo,observacoes,email,senha,personal_id) VALUES ('$nome','$endereco','$sexo','$nasc','$nivel','$objetivo','$observacoes','$email','$senha','$personal_id')";
 		$insert = mysqli_query($conexao, $query);
 			
 		if($insert){
@@ -112,7 +114,7 @@ if(isset($_POST['cadastrar'])){
 
 			<input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
 
-			<a href="../aluno/login.php">Fazer Login</a>
+			<a href="../aluno/index.php">Fazer Login</a>
 		</center>
 	</form>
 	<br>
