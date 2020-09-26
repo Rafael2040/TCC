@@ -13,16 +13,16 @@ if(isset($_POST['editar'])){
 	$objetivo = $_POST['objetivo'];
 	$obs = $_POST['observacoes'];
 	$nivel = $_POST['nivel'];
-	$senha = md5($_POST['senha']);
 	$endereco = $_POST['endereco'];
 
-	$sql = "UPDATE aluno SET nome='$nome', email='$email', sexo='$sexo', data_de_nascimento='$nasc',objetivo='$objetivo', nivel_de_treinamento='$nivel', senha='$senha', observacoes='$obs', endereco='$endereco' WHERE aluno_id='$id' and personal_id='$personal_id'";
+	$sql = "UPDATE aluno SET nome='$nome', email='$email', sexo='$sexo', data_de_nascimento='$nasc',objetivo='$objetivo', nivel_de_treinamento='$nivel', observacoes='$obs', endereco='$endereco' WHERE aluno_id='$id'";
 
 	$conexao->query($sql);
 	echo $conexao->error;
+	header("Location: ./aluno_detalhes.php?id=$id");
 }
 
-$sql = "SELECT * FROM aluno WHERE aluno_id=$id;" //and $personal_id=personal_id
+$sql = "SELECT * FROM aluno WHERE aluno_id=$id";
 $dados = $conexao->query($sql)->fetch_assoc();
 
 ?>
@@ -67,10 +67,9 @@ $dados = $conexao->query($sql)->fetch_assoc();
 			
 			<label for="email">Email:</label>
 			<input type="email" name="email" value="<?=$dados['email']?>"><br><br>
-
+			
 			<input type="submit" value="Salvar" id="salvar" name="editar">
 
-			<a href="./aluno_excluir.php?id=<?=$dados['aluno_id']?>" style="color: red">Excluir Aluno</a>
 		</center>
 	</form>
 	<br>

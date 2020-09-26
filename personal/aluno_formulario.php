@@ -56,7 +56,7 @@ if(isset($_POST['cadastrar'])){
 		$insert = mysqli_query($conexao, $query);
 			
 		if($insert){
-			header('Location: ../aluno/login.php');
+			header('Location: ../personal/index.php');
 		}else{
 			echo $conexao->error."<br>".$query;
 			}
