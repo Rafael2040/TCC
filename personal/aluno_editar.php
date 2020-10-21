@@ -33,6 +33,7 @@ $dados = $conexao->query($sql)->fetch_assoc();
 	<title>Editar - <?=$dados['nome']?></title>
 </head>
 <body>
+	
 	<form method="POST" action="aluno_editar.php?id=<?=$id?>">
 		<center>
 			<h2>Edição de Aluno - <?=$dados['nome']?></h2>
@@ -49,10 +50,11 @@ $dados = $conexao->query($sql)->fetch_assoc();
 		    </select><br><br>
 
 		    <label for="nasc">Data de Nascimento</label>
-			<input type="date" name="nasc" id="nasc" value="<?=$dados['nasc']?>"><br><br>
+			<input type="date" name="nasc" id="nasc" value="<?=$dados['data_de_nascimento']?>"><br><br>
 
 			<label for="nivel">Nivel de Treinamento</label>
-			<select name="nivel" value="<?=$dados['nivel']?>">
+			<select name="nivel">
+				<option value="<?=$dados['nivel_de_treinamento']?>" selected readonly><?=$dados['nivel_de_treinamento']?></option>
 				<option value="nenhum">Nenhum</option>
 				<option value="basico">Básico</option>
 				<option value="intermediario">Intermediário</option>

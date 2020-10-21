@@ -61,7 +61,14 @@ $dados = $conexao->query($sql)->fetch_assoc();
 	</table>
 
 	<a href="./aluno_editar.php?id=<?=$dados['aluno_id']?>">Editar</a><br>
-	<a href="./aluno_excluir.php?id=<?=$dados['aluno_id']?>" style="color: red">Excluir Aluno</a><br>
+	<a href="#" onclick="verificarExclusao()" style="color: red">Excluir Aluno</a><br>
 	<a href="./criar_treino.php?id=<?=$dados['aluno_id']?>">Criar treino</a>
 </body>
+<script>
+function verificarExclusao(){
+	if (confirm("tem certeza que deseja excluir o aluno?")) {
+		window.location = "./aluno_excluir.php?id=<?=$dados['aluno_id']?>";
+	}
+}
+</script>
 </html>
