@@ -19,6 +19,8 @@ $alunos = mysqli_query($conexao, $sql) or die($conexao->close());
 <body>
 	<h1>Bem vindo <?=$_SESSION['nome']?></h1>
 	<h2><a href="./aluno_formulario.php">Adicionar Aluno</h2>
+	<h2><a href="./criar_exercicio.php">Criar Exercício</h2>
+	<h2><a href="./lista_exercicios.php">Lista de Exercício</h2>
 	<h2><a href="logout.php">Sair</a></h2>
 	<ul>
 	<?php while ($aluno = $alunos->fetch_assoc()): ?>
