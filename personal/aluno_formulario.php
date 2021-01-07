@@ -81,6 +81,7 @@ if(isset($_POST['cadastrar'])){
 			<input type="text" name="endereco" id="endereco"><br><br>
 
 			<label for="sexo">Sexo</label>
+			
 			<select name="sexo">
 				<option value="M">Masculino</option>
 				<option value="F">Feminino</option>
@@ -90,6 +91,7 @@ if(isset($_POST['cadastrar'])){
 			<input type="date" name="nasc" id="nasc"><br><br>
 
 			<label for="nivel" >Nivel de Treinamento</label>
+			
 			<select name="nivel">
 				<option value="nenhum">Nenhum</option>
 				<option value="basico">Básico</option>

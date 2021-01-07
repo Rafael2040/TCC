@@ -17,12 +17,12 @@ $alunos = mysqli_query($conexao, $sql) or die($conexao->close());
 	<title>Página Inicial</title>
 </head>
 <body>
-	<h1>Bem vindo <?=$_SESSION['nome']?></h1>
-	<h2><a href="./aluno_formulario.php">Adicionar Aluno</h2>
-	<h2><a href="./lista_exercicios.php">Lista de Exercício</h2>
-	<h2><a href="./criar_treino.php">Adicionar treino</h2>
-	<h2><a href="./listar_alunos.php">Lista de Alunos</h2>
-	<h2><a href="logout.php">Sair</a></h2>
+	<ul>
+	<?php while ($aluno = $alunos->fetch_assoc()): ?>
+		<?php $urlEdicao = "./aluno_detalhes.php?id={$aluno['aluno_id']}"; ?>
+		<li><a href="<?=$urlEdicao?>"><?=$aluno['nome']?></a></li>
+	<?php endwhile ?>
+	</ul>
 </body>
 </html>
 

@@ -59,9 +59,10 @@ if(isset($_POST['cadastrar'])){
 	<title>Cadastro de Personal</title>
 </head>
 <body>
+    <div class="cadastro">
 	<form method="POST" action="cadastro.php">
 		<center>
-			<h2>Cadastro de Personal</h2>
+			<h2 class="">Cadastro de Personal</h2>
 			
 			<label for="nome">Nome:</label>
 			<input type="text" name="nome" id="nome" minlength="3"><br><br>
@@ -73,7 +74,7 @@ if(isset($_POST['cadastrar'])){
 			<input type="date" name="nasc" id="nasc"><br><br>
 			
 			<label for="senha">Senha:</label>
-			<input type="password" name="senha" id="senha"><br><br>
+			<input type="password" class="" name="senha" id="senha"><br><br>
 
 			<label for="senha_2">Repita sua Senha:</label>
 			<input type="password" name="senha_2" id="senha_2"><br><br>
@@ -84,6 +85,7 @@ if(isset($_POST['cadastrar'])){
 		</center>
 	</form>
 	<br>
+</div>
 	<?php 
         if(count($mensagens) > 0){
             echo "<b>ERROS!</b> <br>";
@@ -93,5 +95,6 @@ if(isset($_POST['cadastrar'])){
             }
         }
     ?>
+    
 </body>
 </html>

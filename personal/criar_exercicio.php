@@ -2,6 +2,7 @@
 
 require '../utils/verifica_sessao.php';
 require '../bd/conexao.php';
+
 $mensagens = [];
 
 if(isset($_POST['cadastrar'])){
@@ -13,6 +14,18 @@ if(isset($_POST['cadastrar'])){
 	$sql = "INSERT INTO exercicio(nome_exercicio, descricao, tipo_de_estimulo, personal_id) VALUES ('$nome', '$descricao', '$tipo', $personal)";
 
 	$conexao->query($sql);
+
+	header('Location: ./lista_exercicios.php');
+}
+
+$dados = false;
+
+if(isset($_GET['exercicio'])){
+	$e =  $_GET['exercicio'];
+
+	$sql = "SELECT * FROM exercicio WHERE exercicio_id = $e";
+	$dados = $conexao->query($sql)->fetch_assoc();
+
 }
 
 ?>
@@ -27,13 +40,30 @@ if(isset($_POST['cadastrar'])){
 		<center>
 			<h2>Cadastro de Exercicio</h2>
 			<label for="nome">Nome do Exercicío</label>
-			<input type="text" name="ex_nome" id="nome_exercicio"><br><br>
+			<input 
+				type="text" 
+				name="ex_nome" 
+				id="nome_exercicio"
+				<?= $dados ? "value='{$dados['nome_exercicio']}'" : '' ?>
+			>
+
+			<br><br>
 
 			<label for="endereco">Descrição</label>
-			<input type="text" name="ex_desc" id="descricao"><br><br>
+			<input 
+				type="text" 
+				name="ex_desc" 
+				id="descricao"
+				<?= $dados ? "value='{$dados['descricao']}'" : '' ?>
+			><br><br>
 
 			<label for="endereco">Tipo de Estímulo</label>
-			<input type="text" name="ex_tipo" id="tipo_estimulo"><br><br>
+			<input 
+				type="text" 
+				name="ex_tipo" 
+				id="tipo_estimulo"
+				<?= $dados ? "value='{$dados['tipo_de_estimulo']}'" : '' ?>
+			><br><br>
 
 			<input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
 		</center>
