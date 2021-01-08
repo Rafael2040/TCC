@@ -9,9 +9,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$id = $_POST['treino'];
 	$sql = "INSERT INTO divisao(treino_id, rotulo, descricao) VALUES ($id, '$rotulo', '$desc')";
 
-	$conexao->query($sql);
-
-	header('Location: ./listar_alunos.php');
+	if($conexao->query($sql)){
+		header('Location: ./listar_alunos.php');
+	}
 }
 
 ?>
@@ -23,9 +23,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<title>Criar divisao</title>
 </head>
 <body>
-	<form method="POST" action="criar_treino.php">
+	<form method="POST">
 		<center>
-			<h2>Criar treino</h2>
+			<h2>Criar divisão</h2>
 			<label for="obj">Rótulo:</label>
 			<input type="text" name="rotulo" id="obj"><br><br>
 

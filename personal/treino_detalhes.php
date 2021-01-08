@@ -4,13 +4,12 @@ require '../utils/verifica_sessao.php';
 require '../bd/conexao.php';
 
 $id = $_GET['id'];
-$sql = "SELECT * FROM treino 
-		LEFT JOIN divisao ON treino.treino_id = divisao.treino_id
-		WHERE treino.treino_id=$id";
+$sql_treino = "SELECT * FROM treino WHERE treino_id=$id";
+$sql_divisoes = "SELECT rotulo, divisao_id FROM divisao WHERE treino_id=$id";
 
-$tudo = $conexao->query($sql)->fetch_array();
-print_r($tudo);
-$dados = $tudo[0];
+$treino = $conexao->query($sql_treino)->fetch_assoc();
+$divisoes =  $conexao->query($sql_divisoes)->fetch_all();
+var_dump($divisoes);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,7 +21,7 @@ $dados = $tudo[0];
 			border-collapse: collapse;
 		}
 	</style>
-	<title>Detalhes - <?=$dados['objetivo']?></title>
+	<title>Detalhes - <?=$treino['objetivo']?></title>
 </head>
 <body>
 	<table style="border: 1px solid black">
@@ -32,34 +31,28 @@ $dados = $tudo[0];
 		</tr>
 		<tr>
 			<td>Observações</td>
-			<td><?=$dados['observacoes']?></td>			
+			<td><?=$treino['observacoes']?></td>			
 		</tr>
 		<tr>
 			<td>Data</td>
-			<td><?=$dados['data']?></td>			
+			<td><?=$treino['data']?></td>			
 		</tr>
 	</table>
 
 	<h2>Divisões</h2>
 	<ul>
-		<?php 
-			foreach($tudo as $d):
-				if ($d['divisao_id'] == null) {
-					break;
-				}	
-		?>
-		<li><a href="#"><?=$d['divisao_rotulo']?></a></li>
+		<?php foreach($divisoes as $d):?>
+		<li><a href="#"><?=$d[0]?></a></li>
 		<?php endforeach ?>
 	</ul>
 
-	<a href="./aluno_editar.php?id=<?=$dados['aluno_id']?>">Editar</a><br>
 	<a href="#" onclick="verificarExclusao()" style="color: red">Excluir Aluno</a><br>
-	<a href="./criar_divisao.php?id=<?=$dados['treino_id']?>">Criar divisão</a>
+	<a href="./criar_divisao.php?id=<?=$id?>">Criar divisão</a>
 </body>
 <script>
 function verificarExclusao(){
 	if (confirm("tem certeza que deseja excluir o exercicio?")) {
-		window.location = "./aluno_excluir.php?id=<?=$dados['aluno_id']?>";
+		window.location = "./aluno_excluir.php?id=<?=$treino['aluno_id']?>";
 	}
 }
 </script>
