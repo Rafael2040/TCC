@@ -7,6 +7,9 @@ $id_aluno = $_GET['id'];
 $sql = "SELECT * FROM aluno WHERE aluno_id=$id_aluno;";
 $dados = $conexao->query($sql)->fetch_assoc();
 
+$treinos_sql = "SELECT treino_id, objetivo from treino WHERE aluno_id=$id_aluno";
+$treinos=$conexao->query($treinos_sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -59,7 +62,15 @@ $dados = $conexao->query($sql)->fetch_assoc();
 			<td><?=$dados['observacoes']?></td>			
 		</tr>
 	</table>
-
+	
+	<h2>Treinos</h2>
+	<?php while ($t = $treinos->fetch_assoc()){
+		echo "<a href='./treino_detalhes.php?id={$t['treino_id']}'>{$t['objetivo']}</a>";
+		echo '<br>';
+	}
+	?>
+	<br>
+	<br>
 	<a href="./aluno_editar.php?id=<?=$dados['aluno_id']?>">Editar</a><br>
 	<a href="#" onclick="verificarExclusao()" style="color: red">Excluir Aluno</a><br>
 	<a href="./criar_treino.php?id=<?=$dados['aluno_id']?>">Criar treino</a>

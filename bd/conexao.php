@@ -2,7 +2,7 @@
 
 $banco = 'criador_treinos';
 $host = 'localhost';
-$usuario = 'root';
-$senha = '';
+$usuario = 'jdzd';
+$senha = '123';
 
 $conexao = mysqli_connect($host, $usuario, $senha, $banco);

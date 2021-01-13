@@ -25,7 +25,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             header("Location: ./personal/index.php");
         }
     }
+
+    echo $conexao->error;
 }
+
+
 
 ?>
 <!DOCTYPE html>

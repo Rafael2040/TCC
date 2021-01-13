@@ -9,7 +9,6 @@ $sql_divisoes = "SELECT rotulo, divisao_id FROM divisao WHERE treino_id=$id";
 
 $treino = $conexao->query($sql_treino)->fetch_assoc();
 $divisoes =  $conexao->query($sql_divisoes)->fetch_all();
-var_dump($divisoes);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,7 +41,7 @@ var_dump($divisoes);
 	<h2>Divisões</h2>
 	<ul>
 		<?php foreach($divisoes as $d):?>
-		<li><a href="#"><?=$d[0]?></a></li>
+		<li><a href="./divisao_detalhes.php?id=<?=$d[1]?>"><?=$d[0]?></a></li>
 		<?php endforeach ?>
 	</ul>
 
