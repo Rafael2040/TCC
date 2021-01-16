@@ -57,34 +57,51 @@ if(isset($_POST['cadastrar'])){
 <head>
 	<meta charset="utf-8">
 	<title>Cadastro de Personal</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-    <div class="cadastro">
-	<form method="POST" action="cadastro.php">
-		<center>
-			<h2 class="">Cadastro de Personal</h2>
-			
-			<label for="nome">Nome:</label>
-			<input type="text" name="nome" id="nome" minlength="3"><br><br>
+<br><br><br>
+<div class="container" id="login">
+        <div class="card hoverable center-align col s6 offset-s5 grey lighten-3">
+            <div class="card-content black-text">
+                <span class="card-title">Cadastro de Personal</span>
+                <div class="cadastro">
+                <form method="POST" action="cadastro.php">
+                    <center>                        
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome" minlength="3"><br><br>
 
-			<label for="email">Email:</label>
-			<input type="email" name="email"><br><br>
+                        <label for="email">Email:</label>
+                        <input type="email" name="email"><br><br>
 
-			<label for="nasc" >Data de Nascimento</label>
-			<input type="date" name="nasc" id="nasc"><br><br>
-			
-			<label for="senha">Senha:</label>
-			<input type="password" class="" name="senha" id="senha"><br><br>
+                        <label for="nasc" >Data de Nascimento</label>
+                        <input type="date" name="nasc" id="nasc"><br><br>
+                        
+                        <label for="senha">Senha:</label>
+                        <input type="password" class="" name="senha" id="senha"><br><br>
 
-			<label for="senha_2">Repita sua Senha:</label>
-			<input type="password" name="senha_2" id="senha_2"><br><br>
-			
-			<input type="submit" name="cadastrar" value="Cadastrar" ><br>
+                        <label for="senha_2">Repita sua Senha:</label>
+                        <input type="password" name="senha_2" id="senha_2"><br><br>
+                        
+                        <input class="btn waves-effect waves-light #673ab7 grey darken-4" type="submit" name="cadastrar" value="Cadastrar" ><br>
 
-			<a href="index.php">Fazer Login</a>
-		</center>
-	</form>
-	<br>
+                    </center>
+                </form>
+                <br>
+                <a href="index.php">
+                    <button class="btn waves-effect waves-light #673ab7 grey darken-4" type="submit" name="action">Entrar no sistema
+                        <i class="fa fa-send"></i>
+                    </button>
+                </a>
+                </form>
+            </div>
+        </div>
+    </div>  
 </div>
 	<?php 
         if(count($mensagens) > 0){

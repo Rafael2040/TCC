@@ -69,58 +69,24 @@ if(isset($_POST['cadastrar'])){
 <head>
 	<meta charset="utf-8">
 	<title>Cadastro - Aluno</title>
+	 <!-- Compiled and minified CSS -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-	<form method="POST" action="aluno_formulario.php">
-		<center>
-			<h2>Cadastro de Aluno</h2>
-			<label for="nome">Nome:</label>
-			<input type="text" name="nome" id="nome"><br><br>
-
-			<label for="endereco">Endereço</label>
-			<input type="text" name="endereco" id="endereco"><br><br>
-
-			<label for="sexo">Sexo</label>
-			
-			<select name="sexo">
-				<option value="M">Masculino</option>
-				<option value="F">Feminino</option>
-		    </select><br><br>
-
-		    <label for="nasc" >Data de Nascimento</label>
-			<input type="date" name="nasc" id="nasc"><br><br>
-
-			<label for="nivel" >Nivel de Treinamento</label>
-			
-			<select name="nivel">
-				<option value="nenhum">Nenhum</option>
-				<option value="basico">Básico</option>
-				<option value="intermediario">Intermediário</option>
-				<option value="avancado">Avançado</option>
-		    </select><br><br>
-			
-			<label for="objetivo">Objetivo:</label>
-			<input type="text" name="objetivo"><br><br>
-			
-			<label for="observacoes">Observações:</label>
-			<input type="text" name="observacoes"><br><br>
-			
-			<label for="email">Email:</label>
-			<input type="email" name="email"><br><br>
-
-			<label for="senha">Senha:</label>
-			<input type="password" name="senha" id="senha"><br><br>
-
-			<label for="senha_2">Repita sua Senha:</label>
-			<input type="password" name="senha_2" id="senha_2"><br><br>
-
-			<input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
-
-			<a href="../aluno/index.php">Fazer Login</a>
-		</center>
-	</form>
-	<br>
-	<?php 
+<nav>
+    <div class="nav-wrapper grey darken-4">
+      <a href="index.php" class="brand-logo"><img src="../imagens/logo.png" style="height:60px"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="./aluno_formulario.php">Adicionar aluno</a></li>
+        <li><a href="./lista_exercicios.php">Lista de exercicio</a></li>
+        <li><a href="logout.php">Sair</a></li>
+      </ul>
+    </div>
+  </nav>
+<?php 
         if(count($mensagens) > 0){
             echo "<b>ERROS!</b> <br>";
             foreach($mensagens as $mensagem){
@@ -129,5 +95,74 @@ if(isset($_POST['cadastrar'])){
             }
         }
     ?>
+<br><br><br>	
+<div class="container" id="login">
+        <div class="card hoverable center-align col s6 offset-s5 grey lighten-3">
+            <div class="card-content black-text">
+                <span class="card-title">Cadastro de Aluno</span>
+                <div class="cadastro">
+				<form method="POST" action="aluno_formulario.php">
+					<center>
+						<label for="nome">Nome:</label>
+						<input type="text" name="nome" id="nome"><br><br>
+
+						<label for="endereco">Endereço</label>
+						<input type="text" name="endereco" id="endereco"><br><br>
+
+						<label for="sexo">Sexo</label>
+						
+						<select name="sexo">
+							<option value="M">Masculino</option>
+							<option value="F">Feminino</option>
+						</select><br><br>
+
+						<label for="nasc" >Data de Nascimento</label>
+						<input type="date" name="nasc" id="nasc"><br><br>
+
+						<label for="nivel" >Nivel de Treinamento</label>
+						
+						<select name="nivel">
+							<option value="nenhum">Nenhum</option>
+							<option value="basico">Básico</option>
+							<option value="intermediario">Intermediário</option>
+							<option value="avancado">Avançado</option>
+						</select><br><br>
+						
+						<label for="objetivo">Objetivo:</label>
+						<input type="text" name="objetivo"><br><br>
+						
+						<label for="observacoes">Observações:</label>
+						<input type="text" name="observacoes"><br><br>
+						
+						<label for="email">Email:</label>
+						<input type="email" name="email"><br><br>
+
+						<label for="senha">Senha:</label>
+						<input type="password" name="senha" id="senha"><br><br>
+
+						<label for="senha_2">Repita sua Senha:</label>
+						<input type="password" name="senha_2" id="senha_2"><br><br>
+
+						<input class="btn waves-effect waves-light #673ab7 grey darken-4" type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
+
+					</center>
+				</form>
+				<br>
+                <a href="../aluno/index.php">
+                    <button class="btn waves-effect waves-light #673ab7 grey darken-4" type="submit" name="action">Fazer login
+                        <i class="fa fa-send"></i>
+                    </button>
+                </a>
+                </form>
+            </div>
+        </div>
+    </div>  
+</div>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+   	 	var elems = document.querySelectorAll('select');
+    	var instances = M.FormSelect.init(elems);
+  });
+</script>
 </body>
 </html>
