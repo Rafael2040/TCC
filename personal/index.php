@@ -10,7 +10,6 @@ $personal_nome = $_SESSION['nome'];
 $sql = "SELECT * FROM aluno WHERE personal_id=$personal_id";//pegar só os aluno daquele personal"$perosnal_id= personal_id"
 $alunos = mysqli_query($conexao, $sql) or die($conexao->close());
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +35,8 @@ $alunos = mysqli_query($conexao, $sql) or die($conexao->close());
     </div>
   </nav>
 	<center><h1>Bem vindo <?=$_SESSION['nome']?></h1></center>
-
+    <?php while ($aluno = $alunos->fetch_assoc()): ?>
+        <?php $urlEdicao = "./criar_treino.php?id=".$aluno['aluno_id']; ?>
 	<div class="container">
         <div class="row">
             <div class="card">
@@ -46,17 +46,20 @@ $alunos = mysqli_query($conexao, $sql) or die($conexao->close());
                             <th>Cliente</th>
                             <th>Nome</th>
                             <th>Nivel de treinamento</th>
+                            <th>Criar treino</th>
                         </tr>
                     </thead>
                     <tbody>
 						<td>01</td>
-						<td>jonas</td>
+						<td><?=$aluno['nome']?></td>
 						<td>intermediario</td>
+                        <td><a href="<?=$urlEdicao?>"><?=$aluno['aluno_id']?></a></td>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <?php endwhile ?>
 </body>
 </html>
 

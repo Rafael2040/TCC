@@ -22,47 +22,70 @@ $treinos=$conexao->query($treinos_sql);
 		}
 	</style>
 	<title>Detalhes - <?=$dados['nome']?></title>
+	 <!-- Compiled and minified CSS -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-	<table style="border: 1px solid black">
-		<tr>
-			<th>Campo</th>
-			<th>Dado</th>			
-		</tr>
-		<tr>
-			<td>Nome</td>
-			<td><?=$dados['nome']?></td>			
-		</tr>
-		<tr>
-			<td>Email</td>
-			<td><?=$dados['email']?></td>			
-		</tr>
-		<tr>
-			<td>Endereço</td>
-			<td><?=$dados['endereco']?></td>			
-		</tr>
-		<tr>
-			<td>Sexo</td>
-			<td><?=$dados['sexo']?></td>			
-		</tr>
-		<tr>
-			<td>Data de nascimento</td>
-			<td><?=$dados['data_de_nascimento']?></td>			
-		</tr>
-		<tr>
-			<td>Nível de treinamento</td>
-			<td><?=$dados['nivel_de_treinamento']?></td>			
-		</tr>
-		<tr>
-			<td>Objetivo</td>
-			<td><?=$dados['objetivo']?></td>			
-		</tr>
-		<tr>
-			<td>Observações</td>
-			<td><?=$dados['observacoes']?></td>			
-		</tr>
-	</table>
-	
+
+<nav>
+    <div class="nav-wrapper grey darken-4">
+      <a href="#" class="brand-logo"><img src="../imagens/logo.png" style="height:60px"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="./aluno_formulario.php">Adicionar aluno</a></li>
+        <li><a href="./lista_exercicios.php">Lista de exercicio</a></li>
+        <li><a href="logout.php">Sair</a></li>
+      </ul>
+    </div>
+  </nav>
+ <br><br>
+ <div class="container">
+        <div class="row">
+            <div class="card">
+			<table class="striped">
+				<tr>
+					<th>Campos</th>
+					<th>Dados</th>			
+				</tr>
+				<tr>
+					<td>Nome</td>
+					<td><?=$dados['nome']?></td>			
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><?=$dados['email']?></td>			
+				</tr>
+				<tr>
+					<td>Endereço</td>
+					<td><?=$dados['endereco']?></td>			
+				</tr>
+				<tr>
+					<td>Sexo</td>
+					<td><?=$dados['sexo']?></td>			
+				</tr>
+				<tr>
+					<td>Data de nascimento</td>
+					<td><?=$dados['data_de_nascimento']?></td>			
+				</tr>
+				<tr>
+					<td>Nível de treinamento</td>
+					<td><?=$dados['nivel_de_treinamento']?></td>			
+				</tr>
+				<tr>
+					<td>Objetivo</td>
+					<td><?=$dados['objetivo']?></td>			
+				</tr>
+				<tr>
+					<td>Observações</td>
+					<td><?=$dados['observacoes']?></td>			
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+	<center>
 	<h2>Treinos</h2>
 	<?php while ($t = $treinos->fetch_assoc()){
 		echo "<a href='./treino_detalhes.php?id={$t['treino_id']}'>{$t['objetivo']}</a>";
@@ -82,4 +105,6 @@ function verificarExclusao(){
 	}
 }
 </script>
+<br><br><br>
+</center>
 </html>

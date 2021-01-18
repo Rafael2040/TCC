@@ -22,29 +22,53 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
 	<meta charset="utf-8">
 	<title>Criar treino</title>
+	 <!-- Compiled and minified CSS -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-	<form method="POST" action="criar_treino.php">
-		<center>
-			<h2>Criar treino</h2>
-			<label for="obj">Objetivo:</label>
-			<input type="text" name="obj" id="obj"><br><br>
+<nav>
+    <div class="nav-wrapper grey darken-4">
+      <a href="#" class="brand-logo"><img src="../imagens/logo.png" style="height:60px"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="./aluno_formulario.php">Adicionar aluno</a></li>
+        <li><a href="./lista_exercicios.php">Lista de exercicio</a></li>
+        <li><a href="logout.php">Sair</a></li>
+      </ul>
+    </div>
+  </nav>
+<br><br><br>
+<div class="container" id="login">
+        <div class="card hoverable center-align col s6 offset-s5 grey lighten-3">
+            <div class="card-content black-text">
+                <span class="card-title">Criar treino</span>
+                <div class="cadastro">
+			<form method="POST" action="criar_treino.php">
+				<center>
+					<label for="obj">Objetivo:</label>
+					<input type="text" name="obj" id="obj"><br><br>
 
-			<label for="obs">Observações:</label>
-			<input type="text" name="obs" id="obs"><br><br>
+					<label for="obs">Observações:</label>
+					<input type="text" name="obs" id="obs"><br><br>
 
-		    <label for="data" >Data</label>
-			<input type="date" name="data" id="data"><br><br>
-			
-			<input type="hidden" name="aluno" value="<?=$_GET['id']?>">
-			
+					<label for="data" >Data</label>
+					<input type="date" name="data" id="data"><br><br>
+					
+					<input type="hidden" name="aluno" value="<?=$_GET['id']?>">
+					
 
-			<input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
+					<input class="btn waves-effect waves-light #673ab7 grey darken-4" type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
 
-			
+					
 
-		</center>
-	</form>
+				</center>
+			</form>
+			</div>
+        </div>
+    </div>  
+</div>
 	<br>
 </body>
 </html>

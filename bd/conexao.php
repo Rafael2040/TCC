@@ -3,6 +3,6 @@
 $banco = 'criador_treinos';
 $host = 'localhost';
 $usuario = 'root';
-$senha = 'usbw';
+$senha = '';
 
 $conexao = mysqli_connect($host, $usuario, $senha, $banco);
